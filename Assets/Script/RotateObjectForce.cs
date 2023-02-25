@@ -7,20 +7,19 @@ using UnityEngine.InputSystem;
 public class RotateObjectForce : MonoBehaviour
 {
     public GameObject rotateObject;
-    public float torqueAmoungt;
+    public float RotateSpeed;
 
     private bool _IsSpaceBarHeld;
     
     void Start()
     {
-        
+        RotateSpeed *= 100000;
     }
 
     // Update is called once per frame
     void Update()
     {
         _IsSpaceBarHeld = Input.GetKey(KeyCode.Space);
-        Rigidbody rb = rotateObject.GetComponent<Rigidbody>();
 
         /*
         if(Input.anyKeyDown == false)
@@ -39,16 +38,16 @@ public class RotateObjectForce : MonoBehaviour
         if (_IsSpaceBarHeld)
         {
             if(Input.GetKey(KeyCode.LeftArrow))
-                rb.AddRelativeTorque(0,-torqueAmoungt,0,ForceMode.Force);
+                rb.AddRelativeTorque(0,-RotateSpeed * Time.deltaTime,0,ForceMode.Force);
             if(Input.GetKey(KeyCode.RightArrow))
-                rb.AddRelativeTorque(0,torqueAmoungt,0,ForceMode.Force);
+                rb.AddRelativeTorque(0,RotateSpeed * Time.deltaTime,0,ForceMode.Force);
         }
         else
         {
             if(Input.GetKey(KeyCode.LeftArrow))
-                rb.AddRelativeTorque(-torqueAmoungt,0,0,ForceMode.Force);
+                rb.AddRelativeTorque(-RotateSpeed * Time.deltaTime,0,0,ForceMode.Force);
             if(Input.GetKey(KeyCode.RightArrow))
-                rb.AddRelativeTorque(torqueAmoungt,0,0,ForceMode.Force);
+                rb.AddRelativeTorque(RotateSpeed * Time.deltaTime,0,0,ForceMode.Force);
         }
         
     }
@@ -58,8 +57,8 @@ public class RotateObjectForce : MonoBehaviour
         Rigidbody rb = rotateObject.GetComponent<Rigidbody>();
         
         if (Input.GetKey(KeyCode.UpArrow))
-            rb.AddRelativeTorque(0,0,torqueAmoungt,ForceMode.Force);
+            rb.AddRelativeTorque(0,0,RotateSpeed * Time.deltaTime,ForceMode.Force);
         if (Input.GetKey(KeyCode.DownArrow))
-            rb.AddRelativeTorque(0,0,-torqueAmoungt,ForceMode.Force);
+            rb.AddRelativeTorque(0,0,-RotateSpeed * Time.deltaTime,ForceMode.Force);
     }
 }
